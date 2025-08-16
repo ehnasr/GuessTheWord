@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Confetti from "react-confetti";
 import { countries } from "./countries.js";
 import { getRandomWord, getRandomCountries } from "./utils.js";
@@ -29,9 +29,44 @@ export default function App() {
     setActiveCountries(getRandomCountries(countries, 9));
   }
 
+  const numGuessesLeft = activeCountries.length - 1;
+  const wrongGuessCount = guessedLetters.filter(
+    (l) => !currentWord.includes(l)
+  ).length;
+
   const isGameWon = currentWord
     .split("")
     .every((l) => guessedLetters.includes(l));
+
+  const isGameLost = wrongGuessCount >= numGuessesLeft;
+  const isGameOver = isGameWon || isGameLost;
+
+  const keyPressSound = new Audio("../public/audio/key.mp3");
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      const key = e.key.toLowerCase();
+
+      if (key.match(/^[a-z]$/)) {
+        e.preventDefault();
+        if (!isGameOver && !guessedLetters.includes(key)) {
+          addGuessedLetter(key);
+          keyPressSound.play();
+        }
+      }
+
+      if (
+        (e.code === "Space" || e.key === " " || e.key === "Spacebar") &&
+        isGameOver
+      ) {
+        e.preventDefault();
+        startNewGame();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [guessedLetters, isGameOver]);
 
   return (
     <main>
