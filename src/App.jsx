@@ -41,7 +41,7 @@ export default function App() {
   const isGameLost = wrongGuessCount >= numGuessesLeft;
   const isGameOver = isGameWon || isGameLost;
 
-  const keyPressSound = new Audio("../public/audio/key.mp3");
+  const keyPressSound = new Audio("../audio/key.mp3");
 
   useEffect(() => {
     function handleKeyDown(e) {
