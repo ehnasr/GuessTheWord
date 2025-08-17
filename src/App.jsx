@@ -9,6 +9,7 @@ import GuessWord from "./components/GuessWord.jsx";
 import Keyboard from "./components/Keyboard.jsx";
 import NewGame from "./components/NewGame.jsx";
 import GameStatus from "./components/GameStatus.jsx";
+import Footer from "./components/Footer.jsx";
 
 export default function App() {
   const [currentWord, setCurrentWord] = useState(() => getRandomWord());
@@ -69,38 +70,40 @@ export default function App() {
   }, [guessedLetters, isGameOver]);
 
   return (
-    <main>
-      {isGameWon && <Confetti recycle={false} numberOfPieces={1000} />}
-
+    <>
       <Header />
+      <main>
+        {isGameWon && <Confetti recycle={false} numberOfPieces={1000} />}
 
-      <GameStatus
-        currentWord={currentWord}
-        guessedLetters={guessedLetters}
-        countries={activeCountries}
-      />
+        <GameStatus
+          currentWord={currentWord}
+          guessedLetters={guessedLetters}
+          countries={activeCountries}
+        />
 
-      <Countries
-        currentWord={currentWord}
-        guessedLetters={guessedLetters}
-        countries={activeCountries}
-      />
+        <Countries
+          currentWord={currentWord}
+          guessedLetters={guessedLetters}
+          countries={activeCountries}
+        />
 
-      <GuessWord currentWord={currentWord} guessedLetters={guessedLetters} />
+        <GuessWord currentWord={currentWord} guessedLetters={guessedLetters} />
 
-      <Keyboard
-        currentWord={currentWord}
-        guessedLetters={guessedLetters}
-        onGuess={addGuessedLetter}
-        countries={activeCountries}
-      />
+        <Keyboard
+          currentWord={currentWord}
+          guessedLetters={guessedLetters}
+          onGuess={addGuessedLetter}
+          countries={activeCountries}
+        />
 
-      <NewGame
-        currentWord={currentWord}
-        guessedLetters={guessedLetters}
-        onNewGame={startNewGame}
-        countries={activeCountries}
-      />
-    </main>
+        <NewGame
+          currentWord={currentWord}
+          guessedLetters={guessedLetters}
+          onNewGame={startNewGame}
+          countries={activeCountries}
+        />
+      </main>
+      <Footer />
+    </>
   );
 }
