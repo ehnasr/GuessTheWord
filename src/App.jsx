@@ -89,17 +89,17 @@ export default function App() {
 
         <GuessWord currentWord={currentWord} guessedLetters={guessedLetters} />
 
-        <Keyboard
-          currentWord={currentWord}
-          guessedLetters={guessedLetters}
-          onGuess={addGuessedLetter}
-          countries={activeCountries}
-        />
-
         <NewGame
           currentWord={currentWord}
           guessedLetters={guessedLetters}
           onNewGame={startNewGame}
+          countries={activeCountries}
+        />
+
+        <Keyboard
+          currentWord={currentWord}
+          guessedLetters={guessedLetters}
+          onGuess={addGuessedLetter}
           countries={activeCountries}
         />
       </main>
