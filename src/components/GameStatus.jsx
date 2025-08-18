@@ -84,7 +84,7 @@ export default function GameStatus({ currentWord, guessedLetters, countries }) {
               }}
             >
               {nextSafeCountry.name}
-            </span>
+            </span>{" "}
             !
           </p>
         ) : (
