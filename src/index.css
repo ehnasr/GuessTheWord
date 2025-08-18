@@ -151,6 +151,55 @@ section.word > span {
   align-items: center;
   font-size: 1.125rem;
   border-bottom: 1px solid var(--clr-accent-white);
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* Animation only for new game reveal */
+section.word > span.new-game {
+  animation: wordSlideIn 0.8s ease forwards;
+  animation-delay: calc(var(--index, 0) * 0.1s);
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+@keyframes wordSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Ensure smooth transition after animation */
+section.word > span {
+  transition: none;
+}
+
+section.word > span.correct {
+  transition: transform 0.6s ease;
+}
+
+/* Flip animation for correct letters */
+section.word > span.correct {
+  background-color: var(--clr-accent-green);
+  animation: flipLetter 0.6s ease forwards;
+}
+
+@keyframes flipLetter {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(90deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
 }
 
 section.word > span.missed-letter {
@@ -228,6 +277,16 @@ footer {
   user-select: none;
   width: 100%;
   z-index: 99;
+  animation: footerRise 1s ease-out;
+}
+
+@keyframes footerRise {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 footer h1 {
@@ -270,6 +329,10 @@ footer nav > ul > li a {
   text-decoration: none;
   text-transform: uppercase;
   transition: all 0.3s ease;
+}
+
+footer nav > ul > li a:hover {
+  color: var(--clr-primary-white);
 }
 
 a .info {
