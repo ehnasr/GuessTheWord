@@ -22,6 +22,7 @@ export default function App() {
     setGuessedLetters((prev) =>
       prev.includes(letter) ? prev : [...prev, letter]
     );
+    keyPressSound.play();
   }
 
   function startNewGame() {
