@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer id="footer" class="panel">
+    <footer id="footer">
       <h1>
         <a href="index.html">
           <strong>Guess & Go</strong> by ehab Nasr
@@ -11,7 +11,7 @@ export default function Footer() {
           <li>
             <a href="https://github.com/ehnasr/GuessTheWord" target="_blank">
               About
-              <span class="info"></span>
+              <span className="info"></span>
             </a>
           </li>
         </ul>
