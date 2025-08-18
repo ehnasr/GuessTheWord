@@ -165,7 +165,7 @@ section.keyboard {
   gap: 8px;
   justify-content: center;
   max-width: 600px;
-  margin-bottom: 2.25em;
+  margin-bottom: 5.25em;
 }
 
 section.keyboard > button {
